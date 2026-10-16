@@ -52,3 +52,13 @@ The `code/` directory contains the four-channel baseline required by the supplie
 ## Verification and release notes
 
 The package was checked for Python syntax and for accidental inclusion of data/weight files. End-to-end training or route evaluation cannot be verified without the original datasets and checkpoints. Replace all `local-path` placeholders with your own directories before running the scripts.
+
+## Updated independent-period navigation evaluation
+
+The following scripts are located in `environment_guided_residual_unet_train/full_10var/` and use the adjacent `plot_full10_nep_path_buffer.py`, `config.py`, and `model.py`:
+
+- `evaluate_cmcc4_vs_full10_navigation.py`: paired four-channel/ten-channel connectivity evaluation with a bilinear baseline.
+- `evaluate_cmcc4_vs_full10_navigation_aggregate_input_trial.py`: aggregate-input baseline without bilinear interpolation and an audited in-memory repair of 24 dateline mask pixels.
+- `consolidate_aggregate_navigation_20261016.py`: consolidate existing five-threshold evaluation outputs; requires both aggregate-input and previous seam-trial result directories. These outputs are not included.
+
+Configure the `local-path` placeholders before running. The connectivity evaluators use four-neighbour components for reachability and spot-check against A* with no diagonal corner cutting. The seam repair is specific to the audited mask and is guarded by coordinate and pixel checks.

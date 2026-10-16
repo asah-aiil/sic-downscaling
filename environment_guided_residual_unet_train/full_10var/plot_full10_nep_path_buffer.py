@@ -295,7 +295,9 @@ def astar_path(passable: np.ndarray, start: tuple[int, int], goal: tuple[int, in
                clearance_weight: float = 4.0) -> list[tuple[int, int]] | None:
     """Eight-neighbour, clearance-aware A* returning row/column cells.
 
-    ``passable`` still gives the scientific threshold rule.  Clearance is a
+    ``passable`` still gives the scientific threshold rule.  Diagonal moves
+    require both adjacent orthogonal cells to be passable, so a route cannot
+    slip between two blocked cells that meet only at a corner. Clearance is a
     *soft* cost only: a narrow but valid strait remains usable, while a broad
     open-water area is preferred whenever it is available.
     """
@@ -321,6 +323,8 @@ def astar_path(passable: np.ndarray, start: tuple[int, int], goal: tuple[int, in
         for dr, dc, step in moves:
             nr, nc = r + dr, c + dc
             if nr < 0 or nr >= height or nc < 0 or nc >= width or not passable[nr, nc]:
+                continue
+            if dr and dc and (not passable[r, nc] or not passable[nr, c]):
                 continue
             # This is an exponential safety penalty.  A cell immediately next
             # to land, the route boundary, or SIC > threshold costs up to
