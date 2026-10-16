@@ -17,13 +17,13 @@ SRC="EPSG:3413"
 VIEW="+proj=stere +lat_0=90 +lat_ts=70 +lon_0=112.5 +datum=WGS84 +units=m +no_defs"
 TO_VIEW=Transformer.from_crs(SRC,VIEW,always_xy=True)
 TO_GEO=Transformer.from_crs(SRC,"EPSG:4326",always_xy=True)
-LAND="/home/ubuntu/sic_dsc/data/dataset/target/Bremen_2025.nc"
+LAND="local-path/data/dataset/target/Bremen_2025.nc"
 
 NODES={"G_west":(16,70),"K_west":(22,72),"K_kara":(60,77),"R_kara":(58,71),"K_laptev":(105,77),"K_mid":(140,74),"K_east":(142,77),"K_chukchi":(175,71),"K_bering":(193,66),"G_pacific_north":(190,60),"G_pacific_south":(170,58)}
 LINKS=[("G_pacific_north","K_bering"),("K_bering","K_chukchi"),("K_chukchi","K_mid"),("K_mid","K_east"),("K_east","K_laptev"),("K_laptev","K_kara"),("K_kara","K_west"),("K_west","G_west"),("G_pacific_south","K_chukchi"),("K_chukchi","K_laptev"),("K_laptev","R_kara"),("R_kara","K_west")]
 
 def args():
-    p=argparse.ArgumentParser(); p.add_argument("--land-file",default=LAND,help="Bremen grid and static land mask; no SIC or shipping mask is read"); p.add_argument("--clearance-km",type=float,default=35.0); p.add_argument("--clearance-weight",type=float,default=6.0); p.add_argument("--hard-clearance",action="store_true",help="Enforce clearance as a hard barrier; off by default to keep narrow straits connected"); p.add_argument("--snap-km",type=float,default=220.0); p.add_argument("--arrow-width",type=float,default=3.2); p.add_argument("--output",default="/home/ubuntu/sic_dsc/fig/nep_schematic_routes_astar.svg"); p.add_argument("--view-xmin",type=float,default=-2500000); p.add_argument("--view-xmax",type=float,default=3300000); p.add_argument("--view-ymin",type=float,default=-2400000); p.add_argument("--view-ymax",type=float,default=600000); p.add_argument("--no-nodes",action="store_true"); return p.parse_args()
+    p=argparse.ArgumentParser(); p.add_argument("--land-file",default=LAND,help="Bremen grid and static land mask; no SIC or shipping mask is read"); p.add_argument("--clearance-km",type=float,default=35.0); p.add_argument("--clearance-weight",type=float,default=6.0); p.add_argument("--hard-clearance",action="store_true",help="Enforce clearance as a hard barrier; off by default to keep narrow straits connected"); p.add_argument("--snap-km",type=float,default=220.0); p.add_argument("--arrow-width",type=float,default=3.2); p.add_argument("--output",default="local-path/fig/nep_schematic_routes_astar.svg"); p.add_argument("--view-xmin",type=float,default=-2500000); p.add_argument("--view-xmax",type=float,default=3300000); p.add_argument("--view-ymin",type=float,default=-2400000); p.add_argument("--view-ymax",type=float,default=600000); p.add_argument("--no-nodes",action="store_true"); return p.parse_args()
 
 def read_land(path,x,y):
  with xr.open_dataset(path) as ds:

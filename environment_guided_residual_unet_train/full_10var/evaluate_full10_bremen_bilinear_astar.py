@@ -44,7 +44,7 @@ def parse_args() -> argparse.Namespace:
                    help="Keep 1 for reliable full-resolution inference memory use")
     p.add_argument("--device", default="cuda")
     p.add_argument("--max-days", type=int, default=None, help="Optional smoke-test limit")
-    p.add_argument("--output-csv", default="/home/ubuntu/sic_dsc/bremen_full10_bilinear_astar_2025.csv")
+    p.add_argument("--output-csv", default="local-path/bremen_full10_bilinear_astar_2025.csv")
     p.add_argument("--disagreement-csv", default=None,
                    help="Default: a companion CSV containing only disagreement dates")
     return p.parse_args()

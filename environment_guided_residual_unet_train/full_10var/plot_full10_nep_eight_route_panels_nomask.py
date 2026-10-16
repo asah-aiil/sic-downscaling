@@ -49,7 +49,7 @@ def arguments() -> argparse.Namespace:
     p.add_argument("--end-lon", type=float, default=20.0)
     p.add_argument("--end-lat", type=float, default=72.0)
     p.add_argument("--device", default="cuda")
-    p.add_argument("--output-dir", default="/home/ubuntu/sic_dsc/fig/nep_eight_route_panels_nomask")
+    p.add_argument("--output-dir", default="local-path/fig/nep_eight_route_panels_nomask")
     p.add_argument("--view-xmin", type=float, default=-1_950_000.0)
     p.add_argument("--view-xmax", type=float, default=2_800_000.0)
     p.add_argument("--view-ymin", type=float, default=-1_950_000.0)

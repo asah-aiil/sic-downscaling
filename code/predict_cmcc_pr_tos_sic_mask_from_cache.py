@@ -26,16 +26,16 @@ from model import UNetWithResidual
 
 
 DEFAULT_CHECKPOINT = (
-    "/home/ubuntu/sic_dsc/code/checkpoints/"
+    "local-path/code/checkpoints/"
     "20260903_202642_multi_year_2014_2023_T1_d_rmse_fixed/best_model.pth"
 )
 DEFAULT_CACHE_DIR = (
-    "/home/ubuntu/sic_dsc/data_cmcc/cache_prediction_input/"
+    "local-path/data_cmcc/cache_prediction_input/"
     "cmcc_pr_tos_sic_mask_2050_float16"
 )
 # 只读取 y/x 网格，不读取其真值或时间轴；Bremen_2023 是静态网格模板。
-DEFAULT_GRID_TEMPLATE = "/home/ubuntu/sic_dsc/data/dataset/target/Bremen_2023.nc"
-DEFAULT_OUT_DIR = "/home/ubuntu/sic_dsc/data_cmcc/predict_pr_tos_sic_mask_2050"
+DEFAULT_GRID_TEMPLATE = "local-path/data/dataset/target/Bremen_2023.nc"
+DEFAULT_OUT_DIR = "local-path/data_cmcc/predict_pr_tos_sic_mask_2050"
 EXPECTED_CHANNELS = ("pr", "tos", "sic", "mask")
 
 

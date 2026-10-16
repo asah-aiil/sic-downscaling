@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from matplotlib import font_manager
 
 
-FONT_DIR = Path("/home/ubuntu/.local/share/fonts/dsc_times")
+FONT_DIR = Path("local-path")
 FONT_FILES = ("times.ttf", "timesbd.ttf", "timesi.ttf", "timesbi.ttf")
 
 

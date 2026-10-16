@@ -5,17 +5,17 @@ build_temporal_memmap_cache.py
 把 d-2、d-1、d 时间窗口样本预生成成连续 .npy memmap 缓存，避免训练时反复随机读取 NetCDF。
 
 输出示例：
-  /home/ubuntu/sic_dsc/data/cache_temporal_T3_float16/
+  local-path/data/cache_temporal_T3_float16/
     X.npy                # (N, C, Hc, Wc), float16/float32
     Y.npy                # (N, 1, Hh, Wh), float16/float32
     meta.json
     sample_index.csv
 
 推荐先检查磁盘空间：
-  df -h /home/ubuntu/sic_dsc/data
+  df -h local-path/data
 
 运行：
-  cd /home/ubuntu/sic_dsc/code
+  cd local-path/code
   python build_temporal_memmap_cache.py
 
 如需强制重建：
@@ -45,7 +45,7 @@ def get_time_offsets() -> List[int]:
 
 
 def get_cache_dir(dtype_name: str) -> Path:
-    default = f"/home/ubuntu/sic_dsc/data/cache_temporal_T{len(get_time_offsets())}_{dtype_name}"
+    default = f"local-path/data/cache_temporal_T{len(get_time_offsets())}_{dtype_name}"
     return Path(getattr(Config, "TEMPORAL_CACHE_DIR", default))
 
 

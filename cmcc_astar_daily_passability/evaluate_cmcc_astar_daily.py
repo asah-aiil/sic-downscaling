@@ -20,11 +20,11 @@ import xarray as xr
 from pyproj import Transformer
 
 
-DEFAULT_BEFORE = "/home/ubuntu/sic_dsc/data_cmcc/processed_25km/input_25km_{year}_cmcc.nc"
-DEFAULT_AFTER = "/home/ubuntu/sic_dsc/data_cmcc/predict_pr_tos_sic_mask_{year}/sic_pred_6p25km_cmcc_pr_tos_sic_mask_{year}.nc"
-DEFAULT_TEMPLATE = "/home/ubuntu/sic_dsc/data/dataset/target/Bremen_2024.nc"
-DEFAULT_ROUTE_MASK = "/home/ubuntu/sic_dsc/data/dataset/mask/eurasia_shipping_masks_6p25km_with_arctic.nc"
-DEFAULT_OUTPUT = "/home/ubuntu/sic_dsc/data_cmcc/astar_daily_passability_2015_2050.csv"
+DEFAULT_BEFORE = "local-path/data_cmcc/processed_25km/input_25km_{year}_cmcc.nc"
+DEFAULT_AFTER = "local-path/data_cmcc/predict_pr_tos_sic_mask_{year}/sic_pred_6p25km_cmcc_pr_tos_sic_mask_{year}.nc"
+DEFAULT_TEMPLATE = "local-path/data/dataset/target/Bremen_2024.nc"
+DEFAULT_ROUTE_MASK = "local-path/data/dataset/mask/eurasia_shipping_masks_6p25km_with_arctic.nc"
+DEFAULT_OUTPUT = "local-path/data_cmcc/astar_daily_passability_2015_2050.csv"
 
 
 def args() -> argparse.Namespace:

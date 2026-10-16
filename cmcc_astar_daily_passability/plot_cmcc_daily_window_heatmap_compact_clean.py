@@ -16,7 +16,7 @@ import numpy as np
 from cmcc_times_font import use_times_new_roman
 
 
-ROOT = Path("/home/ubuntu/sic_dsc")
+ROOT = Path("local-path")
 INPUT_2015_2049 = ROOT / "data_cmcc/astar_daily_nep_2015_2050_threshold015.csv"
 INPUT_2050 = ROOT / "data_cmcc/astar_daily_nep_2050_test.csv"
 OUTPUT_DIR = ROOT / "data_cmcc/cmcc_daily_window_heatmap_compact_clean"

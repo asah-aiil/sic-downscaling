@@ -60,7 +60,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--no-amp", action="store_true")
     p.add_argument(
         "--out-dir",
-        default="/home/ubuntu/sic_dsc/nep_pixel_structure_full10_2024_2025",
+        default="local-path/nep_pixel_structure_full10_2024_2025",
     )
     a = p.parse_args()
     if a.batch_size < 1 or a.num_workers < 0 or a.bins < 10 or a.max_samples < 0:

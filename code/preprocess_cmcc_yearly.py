@@ -20,9 +20,9 @@ from pyproj import CRS, Transformer
 from scipy.spatial import cKDTree
 
 
-DEFAULT_ROOT = Path("/home/ubuntu/sic_dsc/data_cmcc/data")
-DEFAULT_TEMPLATE = Path("/home/ubuntu/sic_dsc/data/dataset/input/input_25km_2014_25km.nc")
-DEFAULT_OUTPUT = Path("/home/ubuntu/sic_dsc/data_cmcc/processed_25km")
+DEFAULT_ROOT = Path("local-path/data_cmcc/data")
+DEFAULT_TEMPLATE = Path("local-path/data/dataset/input/input_25km_2014_25km.nc")
+DEFAULT_OUTPUT = Path("local-path/data_cmcc/processed_25km")
 
 SOURCE_SPECS = {
     "pr": {

@@ -60,7 +60,7 @@ def arguments() -> argparse.Namespace:
     p.add_argument("--mask-var", default="mask_all_shipping_seas")
     p.add_argument("--frame-mask-vars", default="mask_barents,mask_kara,mask_laptev,mask_east_siberian,mask_chukchi,mask_bering")
     p.add_argument("--land-file", default=LAND)
-    p.add_argument("--output-dir", default="/home/ubuntu/sic_dsc/fig/nep_six_dates")
+    p.add_argument("--output-dir", default="local-path/fig/nep_six_dates")
     p.add_argument("--device", default="cuda")
     p.add_argument("--view-xmin", type=float, default=-1_950_000.0)
     p.add_argument("--view-xmax", type=float, default=2_800_000.0)

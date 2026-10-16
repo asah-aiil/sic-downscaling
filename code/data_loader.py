@@ -26,7 +26,7 @@ def get_time_offsets():
 
 def get_cache_dir() -> Path:
     dtype_name = getattr(Config, "TEMPORAL_CACHE_DTYPE", "float16")
-    default = f"/home/ubuntu/sic_dsc/data/cache_temporal_T{len(get_time_offsets())}_{dtype_name}"
+    default = f"local-path/data/cache_temporal_T{len(get_time_offsets())}_{dtype_name}"
     return Path(getattr(Config, "TEMPORAL_CACHE_DIR", default))
 
 

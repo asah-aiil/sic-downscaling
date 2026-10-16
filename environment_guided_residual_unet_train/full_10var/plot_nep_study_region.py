@@ -25,9 +25,9 @@ VIEW_CRS = CRS.from_proj4(
 )
 TO_VIEW = Transformer.from_crs(SRC_CRS, VIEW_CRS, always_xy=True)
 
-MASK = "/home/ubuntu/sic_dsc/data/dataset/mask/eurasia_shipping_masks_6p25km_with_arctic.nc"
-LAND = "/home/ubuntu/sic_dsc/data/dataset/target/Bremen_2025.nc"
-ROUTE = "/home/ubuntu/sic_dsc/fig/nep_full10_2024-10-12_astar0.15_buffer300km_route_path.csv"
+MASK = "local-path/data/dataset/mask/eurasia_shipping_masks_6p25km_with_arctic.nc"
+LAND = "local-path/data/dataset/target/Bremen_2025.nc"
+ROUTE = "local-path/fig/nep_full10_2024-10-12_astar0.15_buffer300km_route_path.csv"
 
 
 def args():
@@ -57,7 +57,7 @@ def args():
                    help="Route points per schematic arrow segment")
     p.add_argument("--arrow-color", default="#e87918")
     p.add_argument("--arrow-width", type=float, default=2.6)
-    p.add_argument("--output", default="/home/ubuntu/sic_dsc/fig/nep_study_region.png")
+    p.add_argument("--output", default="local-path/fig/nep_study_region.png")
     p.add_argument("--view-xmin", type=float, default=-2500000.0)
     p.add_argument("--view-xmax", type=float, default=3300000.0)
     p.add_argument("--view-ymin", type=float, default=-2400000.0)

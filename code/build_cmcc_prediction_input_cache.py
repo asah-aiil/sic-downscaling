@@ -19,9 +19,9 @@ def args_parse():
     p = argparse.ArgumentParser()
     p.add_argument("--year", type=int, default=2050)
     p.add_argument("--input-dir", type=Path,
-                   default=Path("/home/ubuntu/sic_dsc/data_cmcc/processed_25km"))
+                   default=Path("local-path/data_cmcc/processed_25km"))
     p.add_argument("--cache-root", type=Path,
-                   default=Path("/home/ubuntu/sic_dsc/data_cmcc/cache_prediction_input"))
+                   default=Path("local-path/data_cmcc/cache_prediction_input"))
     p.add_argument("--overwrite", action="store_true")
     return p.parse_args()
 

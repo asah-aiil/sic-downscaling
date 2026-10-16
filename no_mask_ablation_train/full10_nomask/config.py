@@ -21,7 +21,7 @@ class Config:
     # =========================================================
     # 数据路径
     # =========================================================
-    DATA_ROOT = "/home/ubuntu/sic_dsc/data/dataset"
+    DATA_ROOT = "local-path/data/dataset"
     COARSE_DIR = os.path.join(DATA_ROOT, "input")
     HIGHRES_DIR = os.path.join(DATA_ROOT, "target")
 
@@ -94,10 +94,10 @@ class Config:
     # =========================================================
     # 直接复用现有 T1 十通道缓存，不需要重建。
     # =========================================================
-    TEMPORAL_CACHE_DIR = "/home/ubuntu/sic_dsc/data/cache_T1_multivar_float16_2014_2023"
+    TEMPORAL_CACHE_DIR = "local-path/data/cache_T1_multivar_float16_2014_2023"
 
     # 只有需要从原始 NetCDF 重建独立四通道缓存时才使用这个目录。
-    CACHE_BUILD_DIR = "/home/ubuntu/sic_dsc/data/cache_T1_pr_tos_sic"
+    CACHE_BUILD_DIR = "local-path/data/cache_T1_pr_tos_sic"
     TEMPORAL_CACHE_DTYPE = "float16"
 
     # memmap 读取配置
@@ -206,7 +206,7 @@ class Config:
     # =========================================================
     # 输出目录
     # =========================================================
-    PROJECT_ROOT = "/home/ubuntu/sic_dsc/code"
+    PROJECT_ROOT = "local-path/code"
     CHECKPOINT_ROOT = os.path.join(PROJECT_ROOT, "checkpoints")
 
     EXP_TAG = "tenvar_mask_yearsplit_sicresidual_rmse"

@@ -48,7 +48,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--progress-every", type=int, default=20)
     p.add_argument("--max-samples", type=int, default=0)
     p.add_argument("--no-amp", action="store_true")
-    p.add_argument("--out-dir", default="/home/ubuntu/sic_dsc/nep_icezone_fixed5_full10_2024_2025")
+    p.add_argument("--out-dir", default="local-path/nep_icezone_fixed5_full10_2024_2025")
     a = p.parse_args()
     if a.batch_size < 1 or a.num_workers < 0 or a.max_samples < 0:
         p.error("batch-size>=1，num-workers/max-samples>=0")

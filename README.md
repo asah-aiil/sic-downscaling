@@ -1,6 +1,6 @@
 # SIC downscaling and navigation code (curated snapshot)
 
-This is a **source-code snapshot** curated from `/home/ubuntu/sic_dsc` on 2026-09-29. The code was authored by the project author with AI tools used as coding assistants. It is not a data release. The original research scripts are kept close to their working versions; some defaults still point to paths on the source server. No raw NetCDF data, memmap caches, checkpoints, results, logs, or fonts are included.
+This is a **source-code snapshot** curated from `local-path` on 2026-09-29. The code was authored by the project author with AI tools used as coding assistants. It is not a data release. The original research scripts are kept close to their working versions; machine-specific path roots have been replaced with `local-path` placeholders. No raw NetCDF data, memmap caches, checkpoints, results, logs, or fonts are included.
 
 ## What is included
 
@@ -52,4 +52,4 @@ The `code/` directory contains the four-channel baseline required by the supplie
 
 ## Verification and release notes
 
-The package was checked for Python syntax and for accidental inclusion of data/weight files. End-to-end training or route evaluation cannot be verified without the original datasets and checkpoints. Several scripts still contain machine-specific default paths and should be configured before running elsewhere.
+The package was checked for Python syntax and for accidental inclusion of data/weight files. End-to-end training or route evaluation cannot be verified without the original datasets and checkpoints. Replace all `local-path` placeholders with your own directories before running the scripts.

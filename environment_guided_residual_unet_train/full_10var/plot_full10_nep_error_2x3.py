@@ -26,10 +26,10 @@ from pyproj import CRS, Transformer
 from config import Config
 from model import UNetWithResidual
 
-CHECKPOINT = "/home/ubuntu/sic_dsc/code/checkpoints/20260910_015743_envgated_t2m_u10_v10_msl_pr_ssr_tcc_tos_sic_mask_year_fixed_sic_residual_2014_2023_T1_d_rmse_fixed/best_model.pth"
-CACHE = "/home/ubuntu/sic_dsc/data/cache_temporal_T3_float16_2024_2025_rebuilt"
-MASK = "/home/ubuntu/sic_dsc/data/dataset/mask/eurasia_shipping_masks_6p25km_with_arctic.nc"
-LAND = "/home/ubuntu/sic_dsc/data/dataset/target/Bremen_2025.nc"
+CHECKPOINT = "local-path/code/checkpoints/20260910_015743_envgated_t2m_u10_v10_msl_pr_ssr_tcc_tos_sic_mask_year_fixed_sic_residual_2014_2023_T1_d_rmse_fixed/best_model.pth"
+CACHE = "local-path/data/cache_temporal_T3_float16_2024_2025_rebuilt"
+MASK = "local-path/data/dataset/mask/eurasia_shipping_masks_6p25km_with_arctic.nc"
+LAND = "local-path/data/dataset/target/Bremen_2025.nc"
 ALIASES = {"t2m": ["t2m_d"], "u10": ["u10_d"], "v10": ["v10_d"], "msl": ["msl_d"],
            "pr": ["pr_d", "tp_d"], "ssr": ["ssr_d"], "tcc": ["tcc_d"],
            "tos": ["tos_d", "sst_d"], "sic": ["sic_d", "siconc_d"],
@@ -60,7 +60,7 @@ def arguments() -> argparse.Namespace:
                    help="Optional standalone transparent PNG for the three error distributions")
     p.add_argument("--export-six-panels", action="store_true",
                    help="Export six borderless, data-only PNG panels and skip the combined figure")
-    p.add_argument("--panel-dir", default="/home/ubuntu/sic_dsc/fig",
+    p.add_argument("--panel-dir", default="local-path/fig",
                    help="Destination directory used with --export-six-panels")
     p.add_argument("--device", default="cuda")
     # The map frame is deliberately derived from the shipping-seas mask, as in
@@ -440,7 +440,7 @@ def main() -> None:
     fan = fan_mask(cx, cy)
     common_limit = max(.04, float(np.nanpercentile(np.abs(np.r_[signed_b.ravel(), signed_m.ravel(), gain.ravel()]), 96)))
     common_cmap = plt.colormaps["RdBu_r"].copy(); common_cmap.set_bad(alpha=0)
-    boxplot_output = Path(a.boxplot_output or f"/home/ubuntu/sic_dsc/figures/nep_full10_error_boxplot_{a.date}.png")
+    boxplot_output = Path(a.boxplot_output or f"local-path/figures/nep_full10_error_boxplot_{a.date}.png")
     export_error_boxplot(boxplot_output, signed_b, signed_m, gain, land, cx, cy)
     # Keep a deterministic, publication-scale window.  The mask is still used
     # to crop the source arrays efficiently, but never allowed to expand the
@@ -498,7 +498,7 @@ def main() -> None:
         add_graticule(ax[row, 1], limits, lat_ticks, lon_ticks)
         add_graticule(ax[row, 2], limits, lat_ticks, lon_ticks, show_right=True,
                       show_bottom=(row == 1))
-    output=Path(a.output or f"/home/ubuntu/sic_dsc/figures/nep_full10_error_2x3_{a.date}.png"); output.parent.mkdir(parents=True,exist_ok=True)
+    output=Path(a.output or f"local-path/figures/nep_full10_error_2x3_{a.date}.png"); output.parent.mkdir(parents=True,exist_ok=True)
     fig.savefig(output,dpi=400,bbox_inches="tight",facecolor="white"); plt.close(fig); print(f"saved={output}")
 
 if __name__ == "__main__": main()

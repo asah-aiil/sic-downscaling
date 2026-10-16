@@ -34,11 +34,11 @@ import xarray as xr
 from config import Config
 from model import UNetWithResidual
 
-CHECKPOINT = "/home/ubuntu/sic_dsc/code/checkpoints/20260910_015743_envgated_t2m_u10_v10_msl_pr_ssr_tcc_tos_sic_mask_year_fixed_sic_residual_2014_2023_T1_d_rmse_fixed/best_model.pth"
-CACHE = "/home/ubuntu/sic_dsc/data/cache_temporal_T3_float16_2024_2025_rebuilt"
-MASK = "/home/ubuntu/sic_dsc/data/dataset/mask/eurasia_shipping_masks_6p25km_with_arctic.nc"
-LAND = "/home/ubuntu/sic_dsc/data/dataset/target/Bremen_2025.nc"
-OUT = "/home/ubuntu/sic_dsc/fig"
+CHECKPOINT = "local-path/code/checkpoints/20260910_015743_envgated_t2m_u10_v10_msl_pr_ssr_tcc_tos_sic_mask_year_fixed_sic_residual_2014_2023_T1_d_rmse_fixed/best_model.pth"
+CACHE = "local-path/data/cache_temporal_T3_float16_2024_2025_rebuilt"
+MASK = "local-path/data/dataset/mask/eurasia_shipping_masks_6p25km_with_arctic.nc"
+LAND = "local-path/data/dataset/target/Bremen_2025.nc"
+OUT = "local-path/fig"
 
 ALIASES = {
     "t2m": ["t2m_d"], "u10": ["u10_d"], "v10": ["v10_d"], "msl": ["msl_d"],

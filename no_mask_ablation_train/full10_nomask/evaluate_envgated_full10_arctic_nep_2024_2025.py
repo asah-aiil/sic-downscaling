@@ -28,16 +28,16 @@ from model import UNetWithResidual
 
 
 DEFAULT_CHECKPOINT = (
-    "/home/ubuntu/sic_dsc/code/checkpoints/"
+    "local-path/code/checkpoints/"
     "20260910_015743_envgated_t2m_u10_v10_msl_pr_ssr_tcc_tos_sic_mask_"
     "year_fixed_sic_residual_2014_2023_T1_d_rmse_fixed/best_model.pth"
 )
 DEFAULT_CACHE = (
-    "/home/ubuntu/sic_dsc/data/"
+    "local-path/data/"
     "cache_temporal_T3_float16_2024_2025_rebuilt"
 )
 DEFAULT_MASK_FILE = (
-    "/home/ubuntu/sic_dsc/data/dataset/mask/"
+    "local-path/data/dataset/mask/"
     "eurasia_shipping_masks_6p25km_with_arctic.nc"
 )
 LOGICAL_VARS = ["t2m", "u10", "v10", "msl", "pr", "ssr", "tcc", "tos", "sic"]
@@ -76,7 +76,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--no-amp", action="store_true")
     parser.add_argument(
         "--output-csv",
-        default="/home/ubuntu/sic_dsc/envgated_full10_arctic_nep_2024_2025.csv",
+        default="local-path/envgated_full10_arctic_nep_2024_2025.csv",
     )
     args = parser.parse_args()
     if args.batch_size < 1 or args.num_workers < 0 or args.max_samples < 0:

@@ -52,7 +52,7 @@ def arguments() -> argparse.Namespace:
     p.add_argument("--end-lat", type=float, default=72.0)
     p.add_argument("--device", default="cuda")
     p.add_argument("--max-days", type=int, default=None)
-    p.add_argument("--output-csv", default="/home/ubuntu/sic_dsc/bremen_full10_bilinear_astar_nomask_2024.csv")
+    p.add_argument("--output-csv", default="local-path/bremen_full10_bilinear_astar_nomask_2024.csv")
     p.add_argument("--view-xmin", type=float, default=-1_950_000.0)
     p.add_argument("--view-xmax", type=float, default=2_800_000.0)
     p.add_argument("--view-ymin", type=float, default=-1_950_000.0)

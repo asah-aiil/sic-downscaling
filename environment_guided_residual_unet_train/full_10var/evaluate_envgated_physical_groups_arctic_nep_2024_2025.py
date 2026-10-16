@@ -78,7 +78,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--no-amp", action="store_true")
     parser.add_argument(
         "--output-csv",
-        default="/home/ubuntu/sic_dsc/envgated_physical_groups_arctic_nep_2024_2025.csv",
+        default="local-path/envgated_physical_groups_arctic_nep_2024_2025.csv",
     )
     args = parser.parse_args()
     if args.batch_size < 1 or args.num_workers < 0 or args.max_samples < 0:

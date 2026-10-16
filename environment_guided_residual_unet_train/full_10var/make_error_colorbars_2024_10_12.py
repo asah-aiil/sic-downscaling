@@ -10,7 +10,7 @@ import numpy as np
 from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
 
 
-OUTPUT = Path("/home/ubuntu/sic_dsc/fig/2024-10-12_rect_landpale")
+OUTPUT = Path("local-path/fig/2024-10-12_rect_landpale")
 COLORS = ["#2166ac", "#67a9cf", "#f7f7f7", "#ef8a62", "#b2182b"]
 LIMITS = {
     "de_signed_bias": 0.190732,
