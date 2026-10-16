@@ -62,3 +62,9 @@ The following scripts are located in `environment_guided_residual_unet_train/ful
 - `consolidate_aggregate_navigation_20261016.py`: consolidate existing five-threshold evaluation outputs; requires both aggregate-input and previous seam-trial result directories. These outputs are not included.
 
 Configure the `local-path` placeholders before running. The connectivity evaluators use four-neighbour components for reachability and spot-check against A* with no diagonal corner cutting. The seam repair is specific to the audited mask and is guarded by coordinate and pixel checks.
+
+## Shared training modules
+
+The ablation directories retain their own `config.py`, training entry point, and loader-check entry point. Their configs append the repository's `environment_guided_residual_unet_train/full_10var/` directory to the module search path so unchanged modules are shared. Run each experiment in a separate Python process, for example `cd environment_guided_residual_unet_train/group_O_tos && python main.py`. Keep the repository directory structure intact.
+
+The thermodynamic group's local `train_utils.py` is retained because it implements early stopping. The leave-one-out variant's local `model.py` is retained because its architecture differs from the environment-gated full model. These differences have not been changed by deduplication.

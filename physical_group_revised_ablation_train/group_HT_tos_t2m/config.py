@@ -4,6 +4,13 @@
 # 已有缓存中的 tp_d/sst_d 会通过别名映射为逻辑名称 pr_d/tos_d。
 
 import os
+import sys
+from pathlib import Path
+
+# Share unchanged modules while keeping this experiment's config and overrides.
+_SHARED_MODULES = Path(__file__).resolve().parents[2] / "environment_guided_residual_unet_train" / "full_10var"
+if str(_SHARED_MODULES) not in sys.path:
+    sys.path.append(str(_SHARED_MODULES))
 import torch
 
 
