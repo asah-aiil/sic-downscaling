@@ -236,6 +236,13 @@ def train_model(model, train_loader, val_loader):
     print(f"[Train] log jsonl -> {jsonl_path}")
 
     best_val = float("inf")
+    early_stopping_patience = int(getattr(Config, "EARLY_STOPPING_PATIENCE", 0))
+    early_stopping_min_delta = float(getattr(Config, "EARLY_STOPPING_MIN_DELTA", 0.0))
+    epochs_without_improvement = 0
+    print(
+        f"[Train] early stopping: patience={early_stopping_patience}, "
+        f"min_delta={early_stopping_min_delta:g}, monitor=val_loss"
+    )
 
     for epoch in range(epochs):
         ep = epoch + 1
@@ -252,7 +259,7 @@ def train_model(model, train_loader, val_loader):
             inputs = inputs.to(device, non_blocking=True)
             targets = targets.to(device, non_blocking=True)
 
-            # channel check (你明确说 mask 当作一个波段 -> expected_in 应该是 10)
+            # channel check：mask 作为独立输入波段，通道数由当前配置决定。
             if inputs.ndim != 4 or inputs.shape[1] != expected_in:
                 raise RuntimeError(f"[Train] 输入通道不匹配：inputs={tuple(inputs.shape)}，期望 C={expected_in}。请检查 data_loader 是否追加了 mask 波段。")
 
@@ -390,9 +397,11 @@ def train_model(model, train_loader, val_loader):
             f"val_rmse={val_rmse:.6f} | val_ssim={val_ssim:.6f} | val_msssim={val_mss:.6f}"
         )
 
-        # save best
-        if val_loss < best_val:
+        # save best and update early-stopping counter
+        improved = val_loss < (best_val - early_stopping_min_delta)
+        if improved:
             best_val = val_loss
+            epochs_without_improvement = 0
             torch.save(
                 {
                     "model": model.state_dict(),
@@ -403,6 +412,12 @@ def train_model(model, train_loader, val_loader):
                 str(best_path),
             )
             print(f"[Train] ✅ save BEST -> {best_path} (val_loss={best_val:.6f})")
+        else:
+            epochs_without_improvement += 1
+            print(
+                f"[Train] val_loss 未改善: {epochs_without_improvement}/"
+                f"{early_stopping_patience} (best={best_val:.6f})"
+            )
 
         # save last
         torch.save(
@@ -438,5 +453,18 @@ def train_model(model, train_loader, val_loader):
         _append_csv(csv_path, row)
         _append_jsonl(jsonl_path, row)
 
+        if (
+            early_stopping_patience > 0
+            and epochs_without_improvement >= early_stopping_patience
+        ):
+            print(
+                f"[Train] EARLY STOP at epoch {ep}: val_loss 连续 "
+                f"{early_stopping_patience} 个 epoch 未改善。"
+            )
+            print(f"[Train] 保留最优模型 -> {best_path} (best_val_loss={best_val:.6f})")
+            break
+
     print("[Train] DONE.")
     return best_val
+
+

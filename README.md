@@ -8,12 +8,10 @@ This is a **source-code snapshot** curated from `local-path` on 2026-09-29. The 
 | --- | --- |
 | `environment_guided_residual_unet_train/full_10var/` | Main environment-guided residual U-Net, ten-channel single-day configuration, training, validation and evaluation scripts. |
 | `code/` | PR+TOS+SIC+mask baseline training, CMCC preprocessing, cache construction and prediction example. |
-| `environment_guided_residual_unet_train/group_O_tos/` | Ocean-temperature physical-group ablation example. |
-| `tenvar_leave_one_out_train/drop_tos/` | Leave-one-variable-out ablation example. |
 | `physical_group_revised_ablation_train/group_HT_tos_t2m/` | Revised thermodynamic-group ablation example. |
 | `cmcc_astar_daily_passability/` | Daily A* route passability, window visualization, and a study-region map example. |
 
-The ablation directories are **representative runnable variants**, not every experiment performed on the server. See their `config.py` files for channel order, splits, hyperparameters and data paths. The main ten-channel model uses 2014–2023 data with training years 2014, 2016, 2017, 2019–2021; validation 2018 and 2023; test 2015 and 2022. Its configured maximum is 40 epochs.
+The thermodynamic ablation directory is a **single representative runnable example**, not every experiment performed on the server. See their `config.py` files for channel order, splits, hyperparameters and data paths. The main ten-channel model uses 2014–2023 data with training years 2014, 2016, 2017, 2019–2021; validation 2018 and 2023; test 2015 and 2022. Its configured maximum is 40 epochs.
 
 ## Data and setup
 
@@ -63,8 +61,8 @@ The following scripts are located in `environment_guided_residual_unet_train/ful
 
 Configure the `local-path` placeholders before running. The connectivity evaluators use four-neighbour components for reachability and spot-check against A* with no diagonal corner cutting. The seam repair is specific to the audited mask and is guarded by coordinate and pixel checks.
 
-## Shared training modules
+## Shared training modules and early stopping
 
-The ablation directories retain their own `config.py`, training entry point, and loader-check entry point. Their configs append the repository's `environment_guided_residual_unet_train/full_10var/` directory to the module search path so unchanged modules are shared. Run each experiment in a separate Python process, for example `cd environment_guided_residual_unet_train/group_O_tos && python main.py`. Keep the repository directory structure intact.
+The thermodynamic ablation example retains its own configuration and training/check entry points, and shares unchanged modules from `environment_guided_residual_unet_train/full_10var/`. Run it in a separate Python process from its own directory. Keep the repository structure intact.
 
-The thermodynamic group's local `train_utils.py` is retained because it implements early stopping. The leave-one-out variant's local `model.py` is retained because its architecture differs from the environment-gated full model. These differences have not been changed by deduplication.
+All retained training configurations (four-channel CMCC configuration, full ten-channel model, and thermodynamic ablation example) now enable early stopping on validation loss with `EARLY_STOPPING_PATIENCE = 5` and `EARLY_STOPPING_MIN_DELTA = 0.0`. Training stops after five consecutive epochs without improvement, up to the configured maximum of 40 epochs, and saves the best checkpoint. Set patience to zero to disable early stopping. This release changes the stopping policy for configurations that previously trained for a fixed maximum; it does not modify previously trained checkpoints or reported paper results.

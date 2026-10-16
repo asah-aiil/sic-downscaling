@@ -135,6 +135,8 @@ class Config:
     # 训练超参
     # =========================================================
     NUM_EPOCHS = 40
+    EARLY_STOPPING_PATIENCE = 5
+    EARLY_STOPPING_MIN_DELTA = 0.0
     LEARNING_RATE = 1e-4
     WEIGHT_DECAY = 0.0
 
