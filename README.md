@@ -9,7 +9,6 @@ This is a **source-code snapshot** curated from `local-path` on 2026-09-29. The 
 | `environment_guided_residual_unet_train/full_10var/` | Main environment-guided residual U-Net, ten-channel single-day configuration, training, validation and evaluation scripts. |
 | `code/` | PR+TOS+SIC+mask baseline training, CMCC preprocessing, cache construction and prediction example. |
 | `environment_guided_residual_unet_train/group_O_tos/` | Ocean-temperature physical-group ablation example. |
-| `no_mask_ablation_train/full10_nomask/` | No-mask ablation example. |
 | `tenvar_leave_one_out_train/drop_tos/` | Leave-one-variable-out ablation example. |
 | `physical_group_revised_ablation_train/group_HT_tos_t2m/` | Revised thermodynamic-group ablation example. |
 | `cmcc_astar_daily_passability/` | Daily A* route passability, window visualization, and a study-region map example. |
