@@ -69,20 +69,10 @@ All retained training configurations (four-channel CMCC configuration, full ten-
 
 ## Random seed
 
-The training runs reported in the paper used **seed 42**. The code reads the seed from the `SEED` environment variable rather than hard-coding a value. Training and random sample splitting use the same configured seed; the fixed year splits remain unchanged. Set this variable before running any script that imports a training config.
+The training runs reported in the paper used **seed 42**. Set the ordinary Python variable `seed` in the selected experiment's `config.py` before running:
 
-Linux/macOS:
-
-```bash
-export SEED=42
-python main.py
+```python
+seed = 42
 ```
 
-Windows PowerShell:
-
-```powershell
-$env:SEED = "42"
-python main.py
-```
-
-Use these commands from the selected experiment directory. No default seed is supplied: an unset or non-integer `SEED` must be corrected before execution. A fixed seed alone does not guarantee identical results across different hardware and software environments.
+The distributed configuration uses `seed = None` as a placeholder and assigns `Config.SEED = seed`. Replace `None` with your chosen integer. No environment variable is required. Training and random sample splitting use the same seed; fixed year splits remain unchanged. A fixed seed alone does not guarantee identical results across different hardware and software environments.

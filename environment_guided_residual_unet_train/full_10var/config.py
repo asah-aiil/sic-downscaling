@@ -8,11 +8,14 @@ import os
 import torch
 
 
+seed = None  # Set an integer before running; see README for the paper's seed.
+
+
 class Config:
     # =========================================================
     # 运行环境
     # =========================================================
-    SEED = int(os.environ["SEED"])
+    SEED = seed
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     AMP = True
 
