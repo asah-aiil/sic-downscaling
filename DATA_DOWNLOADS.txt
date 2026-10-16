@@ -1,0 +1,11 @@
+Public Data Download Links
+==========================
+
+CMIP6 / CMCC-CM2-VHR4
+https://esgf-node.llnl.gov/projects/cmip6/
+
+ERA5 single-level reanalysis
+https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview
+
+Bremen sea-ice concentration
+https://seaice.uni-bremen.de/data-archive/

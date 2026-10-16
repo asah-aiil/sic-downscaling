@@ -1,0 +1,9 @@
+# Import-level dependencies; install a CUDA-compatible PyTorch build separately if needed.
+numpy
+torch
+xarray
+netCDF4
+scipy
+pyproj
+matplotlib
+tqdm
