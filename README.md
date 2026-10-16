@@ -66,3 +66,23 @@ Configure the `local-path` placeholders before running. The connectivity evaluat
 The thermodynamic ablation example retains its own configuration and training/check entry points, and shares unchanged modules from `environment_guided_residual_unet_train/full_10var/`. Run it in a separate Python process from its own directory. Keep the repository structure intact.
 
 All retained training configurations (four-channel CMCC configuration, full ten-channel model, and thermodynamic ablation example) now enable early stopping on validation loss with `EARLY_STOPPING_PATIENCE = 5` and `EARLY_STOPPING_MIN_DELTA = 0.0`. Training stops after five consecutive epochs without improvement, up to the configured maximum of 40 epochs, and saves the best checkpoint. Set patience to zero to disable early stopping. This release changes the stopping policy for configurations that previously trained for a fixed maximum; it does not modify previously trained checkpoints or reported paper results.
+
+## Random seed
+
+The training runs reported in the paper used **seed 42**. The code reads the seed from the `SEED` environment variable rather than hard-coding a value. Training and random sample splitting use the same configured seed; the fixed year splits remain unchanged. Set this variable before running any script that imports a training config.
+
+Linux/macOS:
+
+```bash
+export SEED=42
+python main.py
+```
+
+Windows PowerShell:
+
+```powershell
+$env:SEED = "42"
+python main.py
+```
+
+Use these commands from the selected experiment directory. No default seed is supplied: an unset or non-integer `SEED` must be corrected before execution. A fixed seed alone does not guarantee identical results across different hardware and software environments.

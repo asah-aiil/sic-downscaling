@@ -12,7 +12,7 @@ class Config:
     # =========================================================
     # 运行环境
     # =========================================================
-    SEED = 42
+    SEED = int(os.environ["SEED"])
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     AMP = True
 
@@ -112,7 +112,7 @@ class Config:
     # 年份列表由 np.random.default_rng(42) 对 2014–2023 随机排列一次后固定：
     # [2019, 2020, 2014, 2021, 2017, 2016, 2018, 2023, 2015, 2022]
     SPLIT_MODE = "year_fixed"
-    SPLIT_SEED = 42
+    SPLIT_SEED = SEED
     TRAIN_YEARS = [2014, 2016, 2017, 2019, 2020, 2021]
     VAL_YEARS = [2018, 2023]
     TEST_YEARS = [2015, 2022]

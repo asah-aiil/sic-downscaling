@@ -31,7 +31,7 @@ def get_cache_dir() -> Path:
 
 def split_indices(N: int, seed: Optional[int] = None):
     if seed is None:
-        seed = int(getattr(Config, "SEED", 42))
+        seed = int(Config.SEED)
     idx = np.arange(N)
     rng = np.random.default_rng(seed)
     rng.shuffle(idx)

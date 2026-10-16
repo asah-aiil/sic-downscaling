@@ -250,7 +250,7 @@ def split_indices(N: int, seed: Optional[int] = None, cache_dir: Optional[Path] 
             f"不支持的 SPLIT_MODE={split_mode!r}；可选 year_fixed/sample_random"
         )
     if seed is None:
-        seed = int(getattr(Config, "SEED", 42))
+        seed = int(Config.SEED)
     idx = np.arange(N)
     rng = np.random.default_rng(seed)
     rng.shuffle(idx)
